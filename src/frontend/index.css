@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Fonts ──────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("/assets/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Brand teal palette (primary) */
+    --primary: 0.56 0.12 186;
+    --primary-foreground: 1 0 0;
+    --primary-dark: 0.46 0.12 186;
+
+    /* Gold/amber accent */
+    --gold: 0.72 0.15 75;
+    --gold-foreground: 0.15 0 0;
+
+    /* Backgrounds */
+    --background: 0.99 0 0;
+    --foreground: 0.13 0 0;
+
+    /* Card */
+    --card: 1 0 0;
+    --card-foreground: 0.13 0 0;
+
+    /* Popover */
+    --popover: 1 0 0;
+    --popover-foreground: 0.13 0 0;
+
+    /* Secondary - light teal tint */
+    --secondary: 0.96 0.02 186;
+    --secondary-foreground: 0.46 0.12 186;
+
+    /* Muted */
+    --muted: 0.96 0.005 186;
+    --muted-foreground: 0.50 0.03 186;
+
+    /* Accent */
+    --accent: 0.94 0.04 186;
+    --accent-foreground: 0.46 0.12 186;
+
+    /* Destructive */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    /* Border, Input, Ring */
+    --border: 0.90 0.01 186;
+    --input: 0.93 0.01 186;
+    --ring: 0.56 0.12 186;
+
+    /* Charts */
+    --chart-1: 0.56 0.12 186;
+    --chart-2: 0.72 0.15 75;
+    --chart-3: 0.60 0.10 210;
+    --chart-4: 0.70 0.12 150;
+    --chart-5: 0.65 0.14 240;
+
+    /* Sidebar */
+    --sidebar: 0.98 0.01 186;
+    --sidebar-foreground: 0.13 0 0;
+    --sidebar-primary: 0.56 0.12 186;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.94 0.04 186;
+    --sidebar-accent-foreground: 0.46 0.12 186;
+    --sidebar-border: 0.90 0.01 186;
+    --sidebar-ring: 0.56 0.12 186;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Satoshi", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  h4, h5, h6 {
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-teal {
+    background: linear-gradient(135deg, oklch(0.56 0.12 186) 0%, oklch(0.46 0.14 210) 100%);
+  }
+
+  .gradient-teal-light {
+    background: linear-gradient(135deg, oklch(0.96 0.04 186) 0%, oklch(0.98 0.02 200) 100%);
+  }
+
+  .teal-glow {
+    box-shadow: 0 0 30px oklch(0.56 0.12 186 / 0.2);
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      135deg,
+      oklch(0.13 0.03 186 / 0.85) 0%,
+      oklch(0.46 0.12 186 / 0.60) 100%
+    );
+  }
+
+  .section-alt {
+    background: oklch(0.97 0.01 186);
+  }
+
+  .whatsapp-green {
+    background-color: #25D366;
+  }
+
+  .whatsapp-green:hover {
+    background-color: #1da851;
+  }
+}
