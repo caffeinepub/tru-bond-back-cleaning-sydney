@@ -1,56 +1,33 @@
 # Tru Bond Back Cleaning Sydney
 
 ## Current State
-New project — no existing code.
+- Full website exists with Home, Services (6 pages), About, and Contact pages
+- SEOHead component handles title, meta description, OG, Twitter, canonical, and JSON-LD schema
+- content.ts has `serviceAreas` array with 20 Sydney suburbs
+- App.tsx uses TanStack Router with fixed routes
+- Home page has trust badges, services grid, FAQ, pricing, how-it-works sections
 
 ## Requested Changes (Diff)
 
 ### Add
-- Multi-page website for Tru Bond Back Cleaning Sydney (bond back cleaning company)
-- Pages: Home, Services, About, Contact, individual service pages
-- 3000+ words of SEO-optimised, skimmable, Australian-English content in active voice, readable by a 10-year-old
-- Each service page with 400-word descriptions
-- FAQ section on homepage with all 20+ questions answered
-- Top 5 bond cleaning companies list (Tru Bond Cleaning at #5 with website https://trubondcleaningbrisbane.com)
-- Links to carpet cleaning products
-- Contact form that sends data via customer's email client to humptydumptybondcleaning@gmail.com (email NOT displayed on site)
-- WhatsApp button linking to 0488841883
-- Branded images on every page with descriptive alt text for SEO
-- Full SEO meta tags: title, description, keywords, Open Graph, canonical on every page
-- Google site verification meta tag in <head>: `<meta name="google-site-verification" content="LGBPb31c8y91eig9pACZt2fDChSQQ7xZzPNGeQE7mlU" />`
-- Structured data / schema markup for local business
-- Responsive design, mobile-friendly
+- A `SuburbPage.tsx` page component — one dynamic page per suburb at `/suburbs/:slug`
+- A `suburbs.ts` data file with 20 suburb entries: slug, name, postcode, ~400-word SEO-optimised content (Australian English, active voice, readable by a 10-year-old), meta title, meta description, and JSON-LD LocalBusiness schema per suburb
+- Route `/suburbs/:slug` in App.tsx
+- A "Service Areas" section on the Home page (below the FAQ section) with an internal link grid to all 20 suburb pages (for SEO internal linking)
+- Footer update to include suburb links for crawlability
 
 ### Modify
-- Nothing (new project)
+- App.tsx: add `suburbRoute` for `/suburbs/:slug`
+- HomePage.tsx: add a "We Clean Your Suburb" section with 20 suburb link cards
+- Footer.tsx: add a "Suburbs We Serve" column with links to all suburb pages
 
 ### Remove
-- Nothing (new project)
+- Nothing removed
 
 ## Implementation Plan
-
-### Backend
-- Contact form submission: store form submissions (name, email, phone, service, message, address) in canister
-- On submission, open mailto link prefilled with customer's email sending to the hidden business email
-
-### Frontend Pages
-1. **Home** — Hero with CTA, services overview, why choose us, FAQ section (all 20+ questions), trust badges, WhatsApp floating button
-2. **Services** — All services listed with 400-word descriptions each:
-   - End of Lease / Bond Back Cleaning
-   - Carpet Steam Cleaning
-   - Oven & Kitchen Deep Clean
-   - Bathroom & Toilet Clean
-   - Window Cleaning
-   - Wall Spot Cleaning
-3. **About** — Company story, team, guarantees
-4. **Contact** — Form (mailto-based), WhatsApp CTA, service area map info
-
-### SEO
-- Unique `<title>` and `<meta name="description">` per page
-- Open Graph tags
-- Canonical URLs
-- Google site verification tag in index.html head
-- Schema markup (LocalBusiness, FAQPage)
-- Alt text on all images
-- H1/H2/H3 heading hierarchy
-- Internal linking between pages
+1. Create `/src/data/suburbs.ts` with 20 suburb entries including slug, postcode, content (400 words, Australian English, active voice, simple language), meta title, meta description
+2. Create `/src/pages/SuburbPage.tsx` — displays suburb-specific content, JSON-LD LocalBusiness schema, CTAs (WhatsApp + Get Quote), internal links back to home and services
+3. Update `App.tsx` to add suburb route at `/suburbs/:slug`
+4. Update `HomePage.tsx` to add "Areas We Serve" grid section with links to all suburb pages
+5. Update `Footer.tsx` to add suburbs column with links
+6. Validate build

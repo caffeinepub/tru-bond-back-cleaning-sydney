@@ -1,4 +1,5 @@
 import { serviceAreas } from "@/data/content";
+import { suburbs } from "@/data/suburbs";
 import { Link } from "@tanstack/react-router";
 import { Clock, MapPin, MessageCircle } from "lucide-react";
 
@@ -108,13 +109,30 @@ export default function Footer() {
               Service Areas
             </h3>
             <div className="flex flex-wrap gap-x-2 gap-y-1">
-              {serviceAreas.map((area, idx) => (
-                <span key={area} className="text-white/60 text-xs">
-                  {area}
-                  {idx < serviceAreas.length - 1 ? ", " : ""}
-                </span>
+              {suburbs.map((suburb) => (
+                <Link
+                  key={suburb.slug}
+                  to="/suburbs/$slug"
+                  params={{ slug: suburb.slug }}
+                  className="text-white/60 hover:text-primary text-xs transition-colors"
+                >
+                  {suburb.name}
+                </Link>
               ))}
             </div>
+            {/* Render serviceAreas for additional areas not in suburbs list */}
+            {serviceAreas
+              .filter(
+                (area) =>
+                  !suburbs.some(
+                    (s) => s.name.toLowerCase() === area.toLowerCase(),
+                  ),
+              )
+              .map((area) => (
+                <span key={area} className="text-white/60 text-xs mr-1">
+                  {area}
+                </span>
+              ))}
           </div>
         </div>
 

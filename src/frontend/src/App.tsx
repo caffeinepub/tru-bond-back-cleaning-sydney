@@ -17,6 +17,7 @@ import ContactPage from "@/pages/ContactPage";
 import HomePage from "@/pages/HomePage";
 import ServiceDetailPage from "@/pages/ServiceDetailPage";
 import ServicesPage from "@/pages/ServicesPage";
+import SuburbPage from "@/pages/SuburbPage";
 
 // Export for use in components
 export { Link, useNavigate };
@@ -66,12 +67,19 @@ const contactRoute = createRoute({
   component: ContactPage,
 });
 
+const suburbRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/suburbs/$slug",
+  component: SuburbPage,
+});
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   servicesRoute,
   serviceDetailRoute,
   aboutRoute,
   contactRoute,
+  suburbRoute,
 ]);
 
 const router = createRouter({ routeTree });

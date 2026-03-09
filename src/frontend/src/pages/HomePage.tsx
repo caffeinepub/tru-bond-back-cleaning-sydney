@@ -7,10 +7,12 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { faqs, services, trustBadges } from "@/data/content";
+import { suburbs } from "@/data/suburbs";
 import { Link } from "@tanstack/react-router";
 import {
   CheckCircle2,
   ChevronDown,
+  MapPin,
   MessageCircle,
   Phone,
   Star,
@@ -475,6 +477,49 @@ export default function HomePage() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Suburbs Grid ──────────────────────────────────────── */}
+      <section
+        className="py-20"
+        aria-label="Bond cleaning across Sydney suburbs"
+      >
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-14">
+            <h2 className="font-display text-3xl md:text-5xl font-black mb-4 text-foreground">
+              Bond Back Cleaning Across All Sydney Suburbs
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              We service every major suburb in Greater Sydney. Click your suburb
+              to see local bond cleaning tips, pricing, and how we help you get
+              your full deposit back.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {suburbs.map((suburb, idx) => (
+              <Link
+                key={suburb.slug}
+                to="/suburbs/$slug"
+                params={{ slug: suburb.slug }}
+                data-ocid={`suburbs.item.${idx + 1}`}
+                className="bg-white rounded-2xl p-5 text-center shadow-card hover:shadow-teal hover:-translate-y-1 transition-all duration-200 group"
+              >
+                <div className="w-10 h-10 gradient-teal rounded-full flex items-center justify-center mx-auto mb-3">
+                  <MapPin className="h-5 w-5 text-white" />
+                </div>
+                <p className="font-display font-bold text-foreground text-sm group-hover:text-primary transition-colors leading-tight mb-1">
+                  {suburb.name}
+                </p>
+                <p className="text-muted-foreground text-xs mb-2">
+                  NSW {suburb.postcode}
+                </p>
+                <span className="text-primary text-xs font-semibold group-hover:underline">
+                  View →
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
